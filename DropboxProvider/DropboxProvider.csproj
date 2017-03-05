@@ -58,24 +58,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MetaDataValueAccessorItemModel.cs" />
-    <Compile Include="MetaDataPropertyValueReader.cs" />
-    <Compile Include="MetaDataValueAccessorConverter.cs" />
-    <Compile Include="FileStreamValueAccessorConverter.cs" />
-    <Compile Include="DropBoxFile.cs" />
-    <Compile Include="FileStreamValueReader.cs" />
-    <Compile Include="ReadDropboxStepProcessor.cs" />
-    <Compile Include="ReadDropboxStepConverter.cs" />
-    <Compile Include="DropboxStepItemModel.cs" />
-    <Compile Include="DropboxEndpointConverter.cs" />
-    <Compile Include="DropboxEndpointItemModel.cs" />
-    <Compile Include="DropboxSettings.cs" />
-    <Compile Include="EndpointExtensions.cs" />
+    <Compile Include="Models\MetaDataValueAccessorItemModel.cs" />
+    <Compile Include="Readers\MetaDataPropertyValueReader.cs" />
+    <Compile Include="Converters\MetaDataValueAccessorConverter.cs" />
+    <Compile Include="Converters\FileStreamValueAccessorConverter.cs" />
+    <Compile Include="Models\DropBoxFile.cs" />
+    <Compile Include="Readers\FileStreamValueReader.cs" />
+    <Compile Include="Processors\ReadDropboxStepProcessor.cs" />
+    <Compile Include="Converters\ReadDropboxStepConverter.cs" />
+    <Compile Include="Models\DropboxStepItemModel.cs" />
+    <Compile Include="Converters\DropboxEndpointConverter.cs" />
+    <Compile Include="Models\DropboxEndpointItemModel.cs" />
+    <Compile Include="Models\DropboxSettings.cs" />
+    <Compile Include="Helpers\EndpointExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

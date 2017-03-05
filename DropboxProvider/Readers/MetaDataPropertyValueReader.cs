@@ -31,7 +31,7 @@ namespace DropboxProvider
         public ReadResult Read(object source, DataAccessContext context)
         {
             var metaFile = (DropBoxFile)source;
-            var value = metaFile.MetaData.GetType().GetProperty(Property).GetValue(metaFile, null);
+            var value = metaFile.MetaData.GetType().GetProperty(Property).GetValue(metaFile.MetaData, null);
             return new ReadResult(DateTime.UtcNow) { ReadValue = value, WasValueRead = true };
         }
     }

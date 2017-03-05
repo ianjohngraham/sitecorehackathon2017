@@ -75,8 +75,6 @@ namespace DropboxProvider
 
             var httpClient = new HttpClient(new WebRequestHandler { ReadWriteTimeout = 10 * 1000 })
             {
-                // Specify request level timeout which decides maximum time taht can be spent on
-                // download/upload files.
                 Timeout = TimeSpan.FromMinutes(20)
             };
 
@@ -88,7 +86,7 @@ namespace DropboxProvider
 
             var client = new DropboxClient(settings.AccessToken, config);
 
-            var entries = client.Files.ListFolderAsync(settings.RootPath).Result.Entries;
+            var entries = client.Files.ListFolderAsync(settings.RootPath).Result.Entries.Where( e=> e.IsFile).ToList();
             var dropboxFiles = entries.Select(entry => new DropBoxFile(entry, settings));
         
 
