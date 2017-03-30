@@ -3,6 +3,7 @@ using Dropbox.Api.Files;
 using Sitecore.DataExchange.DataAccess;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -58,7 +59,8 @@ namespace DropboxProvider
 
             using (var response = await client.Files.DownloadAsync( file.PathLower))
             {
-                return await response.GetContentAsStringAsync();
+               var bytes =  await response.GetContentAsByteArrayAsync();
+                return Convert.ToBase64String(bytes);
             }           
         }
     }

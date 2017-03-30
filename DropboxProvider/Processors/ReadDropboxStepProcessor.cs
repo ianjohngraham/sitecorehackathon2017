@@ -1,9 +1,12 @@
 ﻿using Dropbox.Api;
+using Sitecore.Data.Items;
+using Sitecore.DataExchange;
 using Sitecore.DataExchange.Attributes;
 using Sitecore.DataExchange.Contexts;
 using Sitecore.DataExchange.Models;
 using Sitecore.DataExchange.Plugins;
 using Sitecore.DataExchange.Processors.PipelineSteps;
+using Sitecore.DataExchange.Providers.Sc.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -97,6 +100,15 @@ namespace DropboxProvider
                 "{0} rows were read from the file. (pipeline step: {1}, endpoint: {2})",
                 entries.Count, pipelineStep.Name, endpoint.Name);
             //
+
+            SitecoreItemUtilities sitecoreItemUtility = new SitecoreItemUtilities()
+            {
+                IsItemNameValid = (string x) => ItemUtil.IsItemNameValid(x),
+                ProposeValidItemName = (string x) => ItemUtil.ProposeValidItemName(x)
+            };
+
+            Context.Plugins.Add(sitecoreItemUtility);
+
             //add the plugin to the pipeline context
             pipelineContext.Plugins.Add(dataSettings);
         }

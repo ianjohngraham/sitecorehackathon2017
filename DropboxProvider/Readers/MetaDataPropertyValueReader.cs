@@ -22,9 +22,14 @@ namespace DropboxProvider
             {
                 throw new ArgumentNullException("context");
             }
+
+            var nameValue = ((DropBoxFile)source).MetaData.Name;
+
+            nameValue = System.IO.Path.GetFileNameWithoutExtension(nameValue);
+
             return new CanReadResult()
             {
-                CanReadValue = !string.IsNullOrWhiteSpace(((DropBoxFile)source).MetaData.Name)
+                CanReadValue = !string.IsNullOrWhiteSpace(nameValue)
             };
         }
 
@@ -32,7 +37,9 @@ namespace DropboxProvider
         {
             var metaFile = (DropBoxFile)source;
             var value = metaFile.MetaData.GetType().GetProperty(Property).GetValue(metaFile.MetaData, null);
-            return new ReadResult(DateTime.UtcNow) { ReadValue = value, WasValueRead = true };
+            var stringVal = (string)value;
+
+            return new ReadResult(DateTime.UtcNow) { ReadValue = stringVal, WasValueRead = true };
         }
     }
 }
