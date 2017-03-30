@@ -101,6 +101,8 @@ namespace DropboxProvider
                 entries.Count, pipelineStep.Name, endpoint.Name);
             //
 
+
+
             SitecoreItemUtilities sitecoreItemUtility = new SitecoreItemUtilities()
             {
                 IsItemNameValid = (string x) => ItemUtil.IsItemNameValid(x),

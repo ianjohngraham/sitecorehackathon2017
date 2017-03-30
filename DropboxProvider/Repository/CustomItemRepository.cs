@@ -17,7 +17,6 @@ namespace DropboxProvider.Repository
 {
     public class CustomItemRepository : InProcItemModelRepository
     {
-
         public override Guid Create(string itemName, Guid templateId, Guid parentId, string language)
         {
             var parentItem = base.Get(parentId);
@@ -48,11 +47,6 @@ namespace DropboxProvider.Repository
         public static MemoryStream GenerateStreamFromByteArray(byte[] s)
         {
             MemoryStream stream = new MemoryStream(s);
-            //StreamWriter writer = new StreamWriter(stream);
-            //writer.Write(s);
-            //writer.Flush();
-            //stream.Position = 0;
-
             return stream;
         }
 
@@ -88,8 +82,6 @@ namespace DropboxProvider.Repository
         {
             var handler = base.HandlerProvider.GetHandler<UpdateItemHandler>();
 
-          
-
             var command = new UpdateItemCommand
             {
                 Id = id,
@@ -104,8 +96,6 @@ namespace DropboxProvider.Repository
             {
                 UpdateMediaItem(itemModel);
             }
-
-
             return true;
         }
     }

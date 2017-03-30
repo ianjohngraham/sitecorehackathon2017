@@ -77,10 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ExtensionValueConverter.cs" />
-    <Compile Include="Converters\SitecoreMediaItemFieldValueAccessorConverter.cs" />
-    <Compile Include="FieldWriter\MediaItemFileStreamWriter.cs" />
-    <Compile Include="FieldWriter\SitecoreMediaItemWriter.cs" />
+    <Compile Include="Converters\UniqueNameAccessorConverter.cs" />
     <Compile Include="Models\MetaDataValueAccessorItemModel.cs" />
+    <Compile Include="Readers\FilenameValueReader.cs" />
     <Compile Include="Readers\ExtensionValueReader.cs" />
     <Compile Include="Readers\MetaDataPropertyValueReader.cs" />
     <Compile Include="Converters\MetaDataValueAccessorConverter.cs" />
