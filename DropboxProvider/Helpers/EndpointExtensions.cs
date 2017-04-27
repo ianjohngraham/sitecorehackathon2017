@@ -1,13 +1,8 @@
-﻿using Sitecore.DataExchange.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DropboxProvider.Models;
+using Sitecore.DataExchange.Models;
 
-namespace DropboxProvider
+namespace DropboxProvider.Helpers
 {
- 
         public static class EndpointExtensions
         {
             public static DropboxSettings GetDropboxSettings(this Endpoint endpoint)

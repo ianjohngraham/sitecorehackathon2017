@@ -1,17 +1,11 @@
-﻿using Sitecore.Data.Items;
-using Sitecore.DataExchange;
+﻿using System;
+using DropboxProvider.Models;
 using Sitecore.DataExchange.Converters.Endpoints;
 using Sitecore.DataExchange.Models;
-using Sitecore.DataExchange.Providers.Sc.Plugins;
 using Sitecore.DataExchange.Repositories;
 using Sitecore.Services.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DropboxProvider
+namespace DropboxProvider.Converters
 {
     public class DropboxEndpointConverter : BaseEndpointConverter<ItemModel>
     {
@@ -39,8 +33,6 @@ namespace DropboxProvider
             settings.RootPath =
                 base.GetStringValue(source, DropboxEndpointItemModel.RootPath);
 
-         
-            //
             //add the plugin to the endpoint
             endpoint.Plugins.Add(settings);
         }

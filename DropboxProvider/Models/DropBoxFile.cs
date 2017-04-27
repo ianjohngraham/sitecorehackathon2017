@@ -1,11 +1,7 @@
-﻿using Dropbox.Api.Files;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Dropbox.Api.Files;
 
-namespace DropboxProvider
+namespace DropboxProvider.Models
 {
    public  class DropBoxFile 
    {
@@ -22,6 +18,5 @@ namespace DropboxProvider
 
         public DropboxSettings Settings { get; }
         public Metadata MetaData { get; }
-
    }
 }

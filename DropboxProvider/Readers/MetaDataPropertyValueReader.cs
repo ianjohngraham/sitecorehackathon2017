@@ -1,11 +1,8 @@
-﻿using Sitecore.DataExchange.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using DropboxProvider.Models;
+using Sitecore.DataExchange.DataAccess;
 
-namespace DropboxProvider
+namespace DropboxProvider.Readers
 {
     public class MetaDataPropertyValueReader : IValueReader
     {

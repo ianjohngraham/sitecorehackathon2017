@@ -1,4 +1,9 @@
-﻿using Dropbox.Api;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using Dropbox.Api;
+using DropboxProvider.Helpers;
+using DropboxProvider.Models;
 using Sitecore.Data.Items;
 using Sitecore.DataExchange;
 using Sitecore.DataExchange.Attributes;
@@ -7,15 +12,8 @@ using Sitecore.DataExchange.Models;
 using Sitecore.DataExchange.Plugins;
 using Sitecore.DataExchange.Processors.PipelineSteps;
 using Sitecore.DataExchange.Providers.Sc.Plugins;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DropboxProvider
+namespace DropboxProvider.Processors
 {
     [RequiredEndpointPlugins(typeof(DropboxSettings))]
     public class ReadDropboxStepProcessor : BaseReadDataStepProcessor
@@ -99,9 +97,7 @@ namespace DropboxProvider
             logger.Info(
                 "{0} rows were read from the file. (pipeline step: {1}, endpoint: {2})",
                 entries.Count, pipelineStep.Name, endpoint.Name);
-            //
-
-
+            
 
             SitecoreItemUtilities sitecoreItemUtility = new SitecoreItemUtilities()
             {
@@ -113,8 +109,6 @@ namespace DropboxProvider
 
             //add the plugin to the pipeline context
             pipelineContext.Plugins.Add(dataSettings);
-        }
-
-       
+        }     
     }
 }

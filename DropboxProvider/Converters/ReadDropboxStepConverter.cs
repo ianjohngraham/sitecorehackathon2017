@@ -1,15 +1,12 @@
-﻿using Sitecore.DataExchange.Converters.PipelineSteps;
+﻿using System;
+using DropboxProvider.Models;
+using Sitecore.DataExchange.Converters.PipelineSteps;
 using Sitecore.DataExchange.Models;
 using Sitecore.DataExchange.Plugins;
 using Sitecore.DataExchange.Repositories;
 using Sitecore.Services.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DropboxProvider
+namespace DropboxProvider.Converters
 {
     public class ReadDropboxStepConverter : BasePipelineStepConverter<ItemModel>
     {

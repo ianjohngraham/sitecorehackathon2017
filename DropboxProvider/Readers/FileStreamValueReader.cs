@@ -1,15 +1,12 @@
-﻿using Dropbox.Api;
-using Dropbox.Api.Files;
-using Sitecore.DataExchange.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Dropbox.Api;
+using Dropbox.Api.Files;
+using DropboxProvider.Models;
+using Sitecore.DataExchange.DataAccess;
 
-namespace DropboxProvider
+namespace DropboxProvider.Readers
 {
     public class FileStreamValueReader : IValueReader
     {

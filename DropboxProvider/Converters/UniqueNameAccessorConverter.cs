@@ -1,16 +1,11 @@
-﻿using Sitecore.DataExchange.Converters.DataAccess.ValueAccessors;
+﻿using System;
+using DropboxProvider.Readers;
+using Sitecore.DataExchange.Converters.DataAccess.ValueAccessors;
 using Sitecore.DataExchange.DataAccess;
-using Sitecore.DataExchange.DataAccess.Readers;
-using Sitecore.DataExchange.DataAccess.Writers;
 using Sitecore.DataExchange.Repositories;
 using Sitecore.Services.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DropboxProvider
+namespace DropboxProvider.Converters
 {
     public class UniqueNameAccessorConverter : ValueAccessorConverter
     {

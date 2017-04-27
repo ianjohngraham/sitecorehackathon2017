@@ -1,20 +1,13 @@
-﻿using Sitecore.DataExchange;
+﻿using DropboxProvider.Readers;
+using Sitecore.DataExchange;
 using Sitecore.DataExchange.Attributes;
 using Sitecore.DataExchange.Converters;
-using Sitecore.DataExchange.Converters.DataAccess.ValueAccessors;
 using Sitecore.DataExchange.DataAccess;
-using Sitecore.DataExchange.DataAccess.Readers;
-using Sitecore.DataExchange.DataAccess.Writers;
 using Sitecore.DataExchange.Extensions;
 using Sitecore.DataExchange.Repositories;
 using Sitecore.Services.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DropboxProvider
+namespace DropboxProvider.Converters
 {
     [SupportedIds(new string[] { "{1A53910C-B245-457A-AB02-FE033E9E47AA}" })]
     public class ExtensionValueConverter : BaseItemModelConverter<ItemModel, IValueReader>
