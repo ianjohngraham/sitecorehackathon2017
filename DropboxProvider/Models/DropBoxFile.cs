@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Dropbox.Api.Files;
 
 namespace DropboxProvider.Models
@@ -18,5 +19,8 @@ namespace DropboxProvider.Models
 
         public DropboxSettings Settings { get; }
         public Metadata MetaData { get; }
+
+        public Stream FileStream { get; set; }
+        public  string FileName { get; set; }
    }
 }

@@ -50,6 +50,17 @@ namespace DropboxProvider.Repository
             return stream;
         }
 
+        public Stream GetMediaItemFileStream(ItemModel itemModel)
+        {
+            var mediaItem = Sitecore.Configuration.Factory.GetDatabase("master").GetItem(ID.Parse(itemModel[ItemModel.ItemID]));
+            if (mediaItem != null)
+            {
+                var stream = mediaItem.Fields["Blob"].GetBlobStream();
+                return stream;
+            }
+            return null;
+        }
+
         private void UpdateMediaItem(ItemModel itemModel)
         {
             var bytes =(byte[]) Convert.FromBase64String((string)itemModel["Blob"]);

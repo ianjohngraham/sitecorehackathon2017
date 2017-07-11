@@ -13,6 +13,8 @@ namespace DropboxProvider.Readers
             Property = property;
         }
 
+        public string FieldName { get; private set; }
+
         public CanReadResult CanRead(object source, DataAccessContext context)
         {
             if (context == null)

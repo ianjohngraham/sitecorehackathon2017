@@ -77,8 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ExtensionValueConverter.cs" />
+    <Compile Include="Converters\ResolveDropboxFileStepConverter.cs" />
+    <Compile Include="Converters\SitecoreItemNameWithExtensionAccessorConverter.cs" />
     <Compile Include="Converters\UniqueNameAccessorConverter.cs" />
     <Compile Include="Models\MetaDataValueAccessorItemModel.cs" />
+    <Compile Include="Models\ResolveDropboxFileSettings.cs" />
+    <Compile Include="Processors\ResolveDropboxFileStepProcessor.cs" />
     <Compile Include="Readers\FilenameValueReader.cs" />
     <Compile Include="Readers\ExtensionValueReader.cs" />
     <Compile Include="Readers\MetaDataPropertyValueReader.cs" />
@@ -94,7 +98,10 @@
     <Compile Include="Models\DropboxSettings.cs" />
     <Compile Include="Helpers\EndpointExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\SitecoreItemNameReader.cs" />
     <Compile Include="Repository\CustomItemRepository.cs" />
+    <Compile Include="Processors\UpdateDropboxFileStepProcessor.cs" />
+    <Compile Include="Repository\DropBoxRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomProvider.config" />
