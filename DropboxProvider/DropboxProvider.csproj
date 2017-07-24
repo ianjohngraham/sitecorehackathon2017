@@ -100,7 +100,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Readers\SitecoreItemNameReader.cs" />
     <Compile Include="Repository\CustomItemRepository.cs" />
-    <Compile Include="Processors\UpdateDropboxFileStepProcessor.cs" />
     <Compile Include="Repository\DropBoxRepository.cs" />
   </ItemGroup>
   <ItemGroup>

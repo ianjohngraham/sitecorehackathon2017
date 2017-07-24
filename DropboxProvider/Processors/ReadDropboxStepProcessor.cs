@@ -4,6 +4,7 @@ using System.Net.Http;
 using Dropbox.Api;
 using DropboxProvider.Helpers;
 using DropboxProvider.Models;
+using DropboxProvider.Repository;
 using Sitecore.Data.Items;
 using Sitecore.DataExchange;
 using Sitecore.DataExchange.Attributes;
@@ -73,30 +74,16 @@ namespace DropboxProvider.Processors
                 return;
             }
  
+            var dropboxRepository = new DropBoxRepository();
 
-            var httpClient = new HttpClient(new WebRequestHandler { ReadWriteTimeout = 10 * 1000 })
-            {
-                Timeout = TimeSpan.FromMinutes(20)
-            };
-
-
-            var config = new DropboxClientConfig(settings.ApplicationName)
-            {
-                HttpClient = httpClient
-            };
-
-            var client = new DropboxClient(settings.AccessToken, config);
-
-            var entries = client.Files.ListFolderAsync(settings.RootPath).Result.Entries.Where( e=> e.IsFile).ToList();
-            var dropboxFiles = entries.Select(entry => new DropBoxFile(entry, settings));
-        
+            var dropboxFiles = dropboxRepository.ReadAll(settings);
 
             //
             //add the data that was read from the file to a plugin
             var dataSettings = new IterableDataSettings(dropboxFiles);
             logger.Info(
                 "{0} rows were read from the file. (pipeline step: {1}, endpoint: {2})",
-                entries.Count, pipelineStep.Name, endpoint.Name);
+                dropboxFiles.Count(), pipelineStep.Name, endpoint.Name);
             
 
             SitecoreItemUtilities sitecoreItemUtility = new SitecoreItemUtilities()

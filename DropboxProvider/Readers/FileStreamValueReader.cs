@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Dropbox.Api;
 using Dropbox.Api.Files;
 using DropboxProvider.Models;
+using DropboxProvider.Repository;
 using Sitecore.DataExchange.DataAccess;
 
 namespace DropboxProvider.Readers
@@ -24,41 +25,10 @@ namespace DropboxProvider.Readers
 
         public ReadResult Read(object source, DataAccessContext context)
         {
+           var dropboxRepository = new DropBoxRepository();
+           var response =dropboxRepository.GetFileStreamContent((DropBoxFile) source);
 
-            var httpClient = new HttpClient(new WebRequestHandler { ReadWriteTimeout = 10 * 1000 })
-            {
-                Timeout = TimeSpan.FromMinutes(20)
-            };
-
-            var dropBoxFile = (DropBoxFile)source;
-
-            var config = new DropboxClientConfig(dropBoxFile.Settings.ApplicationName)
-            {
-                HttpClient = httpClient
-            };
-
-
-            var client = new DropboxClient(dropBoxFile.Settings.AccessToken, config);
-
-            FileMetadata fileData = (FileMetadata)dropBoxFile.MetaData;
-
-            var response = Download(client,  fileData).Result;
-
-            return new ReadResult(DateTime.UtcNow) { ReadValue = response, WasValueRead = true };
-        }
-
-        private async Task<string> Download(DropboxClient client, FileMetadata file)
-        {
-            var httpClient = new HttpClient(new WebRequestHandler { ReadWriteTimeout = 10 * 1000 })
-            {
-                Timeout = TimeSpan.FromMinutes(20)
-            };
-
-            using (var response = await client.Files.DownloadAsync( file.PathLower))
-            {
-               var bytes =  await response.GetContentAsByteArrayAsync();
-                return Convert.ToBase64String(bytes);
-            }           
-        }
+           return new ReadResult(DateTime.UtcNow) { ReadValue = response, WasValueRead = true };
+        }      
     }
 }
