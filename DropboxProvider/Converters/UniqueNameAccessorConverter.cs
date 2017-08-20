@@ -21,8 +21,7 @@ namespace DropboxProvider.Converters
             {
                 return null;
             }
-             var property = base.GetStringValue(source, "Name");
-           
+    
             if (accessor.ValueReader == null)
             {
                 accessor.ValueReader = new FilenameValueReader();
@@ -30,6 +29,5 @@ namespace DropboxProvider.Converters
 
             return accessor;
         }
-
     }
 }

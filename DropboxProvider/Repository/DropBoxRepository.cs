@@ -79,7 +79,7 @@ namespace DropboxProvider.Repository
             }
             catch (Exception ex)
             {
-                Log.Info("Can't find file",ex);
+                Log.Error("Can't find file",ex, this);
             } 
             return null;
         }
