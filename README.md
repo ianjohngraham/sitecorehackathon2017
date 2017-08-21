@@ -1,8 +1,8 @@
-# Dropbox Provider for the Sitecore Data Exchange Framework
+# Dropbox Provider for the Data Exchange Framework
 
 This is a POC for integrating Dropbox with the Sitecore Media Library using the Sitecore Data Exchange Framework.
 
-Please use at your own risk
+Please use at your own risk.
 
 ## Getting Started 
 Download and install the Data Exchange Framework v1.3 and the Sitecore Provider here:
@@ -19,11 +19,11 @@ Make a small change to your Web.config:
  </dependentAssembly>
 
 
-## Get a token from Dropbox
+## Get a Token from Dropbox
  
- Got to: https://www.dropbox.com/developers/apps and login with a dropbox account
+ Got to: https://www.dropbox.com/developers/apps and login with a Dropbox account.
  
- Create a new App that will give you full dropbox access.
+ Create a new App that will give you full Dropbox access.
  
  Generate an access token for your app.
  
@@ -33,4 +33,5 @@ Make a small change to your Web.config:
  
 
 # Using the Code
+
 Just download the repository and add references to the Sitecore Libraries for the Data Exchange Framework and Core Sitecore.
