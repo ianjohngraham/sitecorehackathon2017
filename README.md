@@ -21,7 +21,9 @@ Make a small change to your Web.config:
 ## Get a token from Dropbox
  
  Got to: https://www.dropbox.com/developers/apps and login with a dropbox account
+ 
  Create a new App that will give you full dropbox access.
+ 
  Generate an access token for your app.
  
  Add the token and the application name to the Endpoint settings here:
