@@ -38,3 +38,22 @@ Make a small change to your Web.config:
 # Using the Code
 
 Just download the repository and add references to the Sitecore Libraries for the Data Exchange Framework and Core Sitecore.
+
+# Runing the Exchange Process
+
+Make sure you have specified the root path to your Dropbox folder (This is where all you images will be imported from) - I've set one up called test.
+
+<img src="/assets/rootpath.PNG" />
+
+Navigate to the Dropbox Provider in the Sitecore Content Editor:
+
+/sitecore/system/Data Exchange/Dropbox Provider Tenant/
+
+Run the Pipeline Batch from the top ribbon:
+
+<img src="/assets/runbatch.PNG" />
+
+Look in your Media folder: /sitecore/media library/Test
+
+Enjoy!
+
