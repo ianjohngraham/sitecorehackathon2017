@@ -15,8 +15,8 @@ Make a small change to your Web.config:
 
 ``` xml
 	<dependentAssembly>
-        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" />
-        <bindingRedirect oldVersion="0.0.0.0-7.0.0.0" newVersion="6.0.0.0" />
+             <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" />
+             <bindingRedirect oldVersion="0.0.0.0-7.0.0.0" newVersion="6.0.0.0" />
 	</dependentAssembly>
 
 ```
