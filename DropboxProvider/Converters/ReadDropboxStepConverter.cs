@@ -1,5 +1,6 @@
 ﻿using System;
 using DropboxProvider.Models;
+using Sitecore.DataExchange.Attributes;
 using Sitecore.DataExchange.Converters.PipelineSteps;
 using Sitecore.DataExchange.Models;
 using Sitecore.DataExchange.Plugins;
@@ -8,12 +9,12 @@ using Sitecore.Services.Core.Model;
 
 namespace DropboxProvider.Converters
 {
-    public class ReadDropboxStepConverter : BasePipelineStepConverter<ItemModel>
+    [SupportedIds("{3CCD110E-DD01-4EEB-81A3-AFCE38EF93B0}", "{A9D3C449-B9E3-44C1-B153-CAEC25C54444}")]
+    public class ReadDropboxStepConverter : BasePipelineStepConverter
     {
-        private static readonly Guid TemplateId = Guid.Parse("{A9D3C449-B9E3-44C1-B153-CAEC25C54444}");
+        
         public ReadDropboxStepConverter(IItemModelRepository repository) : base(repository)
         {
-            this.SupportedTemplateIds.Add(TemplateId);
         }
         protected override void AddPlugins(ItemModel source, PipelineStep pipelineStep)
         {
@@ -27,7 +28,7 @@ namespace DropboxProvider.Converters
             {
                 settings.EndpointFrom = endpointFrom;
             }
-            pipelineStep.Plugins.Add(settings);
+            pipelineStep.AddPlugin(settings);
         }
     }
 }

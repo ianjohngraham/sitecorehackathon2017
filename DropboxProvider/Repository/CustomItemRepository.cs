@@ -1,17 +1,11 @@
 ﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
 using Sitecore.DataExchange.Local.Repositories;
 using Sitecore.Resources.Media;
 using Sitecore.Services.Core.Model;
 using Sitecore.Services.Infrastructure.Model;
 using Sitecore.Services.Infrastructure.Sitecore.Handlers;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DropboxProvider.Repository
 {

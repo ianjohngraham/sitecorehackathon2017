@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DropboxProvider.Helpers;
+﻿using DropboxProvider.Helpers;
 using DropboxProvider.Models;
 using Sitecore.DataExchange;
 using Sitecore.DataExchange.Attributes;
@@ -16,7 +11,7 @@ using Sitecore.Services.Core.Model;
 
 namespace DropboxProvider.Converters
 {
-    [SupportedIds(new string[] { "{2DF31802-0AD1-41DC-B369-8854116A2B16}" })]
+    [SupportedIds("{2DF31802-0AD1-41DC-B369-8854116A2B16}")]
     public class ResolveDropboxFileStepConverter : BaseResolveObjectFromEndpointStepConverter
     {
 
@@ -42,7 +37,7 @@ namespace DropboxProvider.Converters
             };
 
 
-            step.Plugins.Add((IPlugin)resolveDropboxFileSettings);
+            step.AddPlugin((IPlugin)resolveDropboxFileSettings);
         }
 
         private void AddEndpointSettings(ItemModel source, PipelineStep pipelineStep)
@@ -52,7 +47,7 @@ namespace DropboxProvider.Converters
             if (endpointTo != null)
             {
                 var dropboxSettings = endpointTo.GetDropboxSettings();
-                pipelineStep.Plugins.Add(dropboxSettings);
+                pipelineStep.AddPlugin(dropboxSettings);
             }
 
         }

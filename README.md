@@ -9,17 +9,7 @@ Download and install the Data Exchange Framework v1.3 and the Sitecore Provider 
 
 https://dev.sitecore.net/Downloads/Data_Exchange_Framework/1x/Data_Exchange_Framework_1_3.aspx
 
-Install the Sitecore Package provided in the repository here: /SitecorePackage/Dropbox Provider for DEF-1.00.zip
-
-Make a small change to your Web.config:
-
-``` xml
-	<dependentAssembly>
-             <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" />
-             <bindingRedirect oldVersion="0.0.0.0-7.0.0.0" newVersion="6.0.0.0" />
-	</dependentAssembly>
-
-```
+Install the Sitecore Package provided in the repository here: /Sitecore packages/Dropbox Provider for DEF 3.0.0.zip
 
 
 ## Get a Token from Dropbox
@@ -49,7 +39,7 @@ Navigate to the Dropbox Provider in the Sitecore Content Editor:
 
 /sitecore/system/Data Exchange/Dropbox Provider Tenant/
 
-Run the Pipeline Batch from the top ribbon:
+Run the "Dropbox Files to Media Items Pipeline Batch" Pipeline Batch from the top ribbon:
 
 <img src="/assets/runbatch.PNG" />
 

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net.Http;
-using Dropbox.Api;
 using DropboxProvider.Helpers;
 using DropboxProvider.Models;
 using DropboxProvider.Repository;
@@ -13,6 +11,7 @@ using Sitecore.DataExchange.Models;
 using Sitecore.DataExchange.Plugins;
 using Sitecore.DataExchange.Processors.PipelineSteps;
 using Sitecore.DataExchange.Providers.Sc.Plugins;
+using Sitecore.Services.Core.Diagnostics;
 
 namespace DropboxProvider.Processors
 {
@@ -25,7 +24,7 @@ namespace DropboxProvider.Processors
         protected override void ReadData(
             Endpoint endpoint,
             PipelineStep pipelineStep,
-            PipelineContext pipelineContext)
+            PipelineContext pipelineContext, ILogger logger)
         {
             if (endpoint == null)
             {
@@ -39,7 +38,6 @@ namespace DropboxProvider.Processors
             {
                 throw new ArgumentNullException(nameof(pipelineContext));
             }
-            var logger = pipelineContext.PipelineBatchContext.Logger;
             //
             //get the file path from the plugin on the endpoint
             var settings = endpoint.GetDropboxSettings();
@@ -84,8 +82,10 @@ namespace DropboxProvider.Processors
             logger.Info(
                 "{0} rows were read from the file. (pipeline step: {1}, endpoint: {2})",
                 dropboxFiles.Count(), pipelineStep.Name, endpoint.Name);
-            
 
+            pipelineContext.AddPlugin(dataSettings);
+
+            // TODO: WTF??? 
             SitecoreItemUtilities sitecoreItemUtility = new SitecoreItemUtilities()
             {
                 IsItemNameValid = (string x) => ItemUtil.IsItemNameValid(x),
@@ -94,8 +94,8 @@ namespace DropboxProvider.Processors
 
             Context.Plugins.Add(sitecoreItemUtility);
 
-            //add the plugin to the pipeline context
-            pipelineContext.Plugins.Add(dataSettings);
-        }     
+        }
+
+
     }
 }
