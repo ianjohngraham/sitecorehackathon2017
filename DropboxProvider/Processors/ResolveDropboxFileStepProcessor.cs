@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using Dropbox.Api.Files;
-using DropboxProvider.Helpers;
 using DropboxProvider.Models;
 using DropboxProvider.Repository;
-using Sitecore.Data;
 using Sitecore.DataExchange.Attributes;
 using Sitecore.DataExchange.Contexts;
 using Sitecore.DataExchange.DataAccess;
 using Sitecore.DataExchange.Models;
 using Sitecore.DataExchange.Plugins;
 using Sitecore.DataExchange.Processors.PipelineSteps;
-using Sitecore.DataExchange.Providers.Sc.Plugins;
-using Sitecore.DataExchange.Repositories;
+using Sitecore.Services.Core.Diagnostics;
 using Sitecore.Services.Core.Model;
 
 namespace DropboxProvider.Processors
@@ -20,13 +16,11 @@ namespace DropboxProvider.Processors
     [RequiredPipelineStepPlugins(new Type[] { typeof(ResolveDropboxFileSettings) })]
     public class ResolveDropboxFileStepProcessor : BaseResolveObjectFromEndpointStepProcessor<DropBoxFile>
     {
-
-        protected override DropBoxFile ResolveObject(string identifierValue, Endpoint endpoint, PipelineStep pipelineStep,
-            PipelineContext pipelineContext)
+        ////TODO: Rewrite ResolveDropboxFileStepProcessor
+        /// TODO: Is there any identifier of a Dropbox File?
+        public override object FindExistingObject(DropBoxFile identifierValue, PipelineStep pipelineStep, PipelineContext pipelineContext,
+            ILogger logger)
         {
-            if (!this.CanProcess(pipelineStep, pipelineContext))
-                return null;
-
             SynchronizationSettings synchronizationSettings =
                 Sitecore.DataExchange.Extensions.PipelineContextExtensions.GetSynchronizationSettings(pipelineContext);
 
@@ -42,7 +36,7 @@ namespace DropboxProvider.Processors
             DataAccessContext context = new DataAccessContext();
 
             var resolveSettings = pipelineStep.GetPlugin<ResolveDropboxFileSettings>();
-
+            ////TODO: Should not access Source directly - it should be configurable
             file.FileName = (string)resolveSettings.ItemNameValueAccessor.ValueReader.Read(synchronizationSettings.Source, context).ReadValue;
 
             var metaData = dropboxRepository.GetMetadata(file);
@@ -57,6 +51,22 @@ namespace DropboxProvider.Processors
             return null;
         }
 
+        public override object CreateNewObject(DropBoxFile identifierValue, PipelineStep pipelineStep, PipelineContext pipelineContext,
+            ILogger logger)
+        {
+            var settings = pipelineStep.GetPlugin<DropboxSettings>();
+            var file = new DropBoxFile(new Metadata(), settings);
+            return file;
+        }
+
+        protected override DropBoxFile ConvertValueToIdentifier(object identifierValue, PipelineStep pipelineStep, PipelineContext pipelineContext,
+            ILogger logger)
+        {
+
+            var settings = pipelineStep.GetPlugin<DropboxSettings>();
+            var file = new DropBoxFile(new Metadata(), settings);
+            return file;
+        }
     }
 }
 

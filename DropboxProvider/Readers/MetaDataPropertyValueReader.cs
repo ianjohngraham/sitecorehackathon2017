@@ -15,25 +15,17 @@ namespace DropboxProvider.Readers
 
         public string FieldName { get; private set; }
 
-        public CanReadResult CanRead(object source, DataAccessContext context)
+        public ReadResult Read(object source, DataAccessContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException("context");
-            }
-
             var nameValue = ((DropBoxFile)source).MetaData.Name;
 
             nameValue = System.IO.Path.GetFileNameWithoutExtension(nameValue);
 
-            return new CanReadResult()
+            if (string.IsNullOrWhiteSpace(nameValue))
             {
-                CanReadValue = !string.IsNullOrWhiteSpace(nameValue)
-            };
-        }
+                return ReadResult.NegativeResult(DateTime.Now);
+            }
 
-        public ReadResult Read(object source, DataAccessContext context)
-        {
             var metaFile = (DropBoxFile)source;
             var value = metaFile.MetaData.GetType().GetProperty(Property).GetValue(metaFile.MetaData, null);
             var stringVal = (string)value;

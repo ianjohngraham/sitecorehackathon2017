@@ -6,22 +6,22 @@ namespace DropboxProvider.Readers
     public class ExtensionValueReader : IValueReader
     {
 
-        public CanReadResult CanRead(object source, DataAccessContext context)
+        public virtual ReadResult Read(object source, DataAccessContext context)
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context");
+                return ReadResult.NegativeResult(DateTime.Now);
             }
-            return new CanReadResult()
-            {
-                CanReadValue = !string.IsNullOrWhiteSpace(((string)source))
-            };
-        }
 
-        public ReadResult Read(object source, DataAccessContext context)
-        {
+            if (string.IsNullOrWhiteSpace(((string)source)))
+            {
+                return ReadResult.NegativeResult(DateTime.Now);
+            }
+           
             string stringVal = System.IO.Path.GetExtension((string)source).Replace(".", "");
-            return new ReadResult(DateTime.UtcNow) { ReadValue = stringVal, WasValueRead = true };
+
+            return ReadResult.PositiveResult(stringVal, DateTime.Now);
         }
     }
 }
+

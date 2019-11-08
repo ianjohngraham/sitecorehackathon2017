@@ -1,5 +1,4 @@
 ﻿using System;
-using DropboxProvider.Models;
 using Sitecore.DataExchange.DataAccess;
 using Sitecore.Services.Core.Model;
 
@@ -21,25 +20,23 @@ namespace DropboxProvider.Readers
             IncludeExtension = includeExtension;
         }
 
-        public CanReadResult CanRead(object source, DataAccessContext context)
+        public virtual ReadResult Read(object source, DataAccessContext context)
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context");
+                return ReadResult.NegativeResult(DateTime.Now);
             }
 
             this.FieldName = "ItemName";
 
-            var itemModel = (ItemModel) source;
+            var itemModel = (ItemModel)source;
 
-            return new CanReadResult()
+
+            if (!( itemModel.ContainsKey("ItemName") && itemModel.ContainsKey("Extension") ))
             {
-                CanReadValue = itemModel.ContainsKey("ItemName") && itemModel.ContainsKey("Extension")
-            };
-        }
+                return ReadResult.NegativeResult(DateTime.Now);
+            }
 
-        public ReadResult Read(object source, DataAccessContext context)
-        {
             string returnValue = string.Empty;
             if (IncludeExtension)
             {
